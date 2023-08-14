@@ -9,9 +9,14 @@ bookingRoute.post('/',async(req,res)=>{
         const payload=req.body
         const post=new FlightModel(payload)
         await post.save()
-         res.status(201).send({"msg":"New Post Added"}) 
+         res.status(201).send({"msg":"Booking Added"}) 
     }catch(err){
         res.status(400).send({"msg":err.message}) 
     }
     
 })
+
+
+
+
+module.exports=bookingRoute
