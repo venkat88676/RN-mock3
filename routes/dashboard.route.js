@@ -1,16 +1,20 @@
 const express=require("express");
 
-const {BookingModel}=require('../model/bookingModel')
+const BookingModel=require('../model/bookingModel')
+const {UserModel}=require('../model/userModel')
+const {FlightModel}=require('../model/flightModel')
 
 
 const dashboardRoute=express.Router();
 
 dashboardRoute.get('/',async(req,res)=>{
-    try{ 
-        const booking=await BookingModel.find()
-        res.status(200).send(booking)
-    }catch(err){
-        res.status(400).send({"msg":err.message})
+    try {
+        const bookings = await BookingModel.find()
+            .populate("user")  
+            .populate("flight"); 
+        res.status(200).send(bookings);
+    } catch (err) {
+        res.status(400).send({ "msg": err.message });
     }
     
 })

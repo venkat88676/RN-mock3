@@ -1,10 +1,12 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose");
+// const { UserModel } = require("../model/userModel");
+// const { FlightModel } = require("../model/flightModel");
 
-const bookingSchema=mongoose.Schema({
-    user : { type: mongoose.Schema.Types.ObjectId, ref: 'UserModel' },
-    flight : { type: mongoose.Schema.Types.ObjectId, ref: 'FlightModel' }
-})
+const bookingSchema = mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
+    flight: { type: mongoose.Schema.Types.ObjectId, ref: 'flight' }
+});
 
-const BookingModel=mongoose.model("booking",bookingSchema)
+const BookingModel = mongoose.model("booking", bookingSchema);
 
-module.exports=BookingModel
+module.exports = BookingModel;
